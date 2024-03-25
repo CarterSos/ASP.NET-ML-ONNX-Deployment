@@ -1,0 +1,142 @@
+﻿@model IEnumerable<Zoo.Models.AnimalPrediction>
+
+@{
+    ViewData["Title"] = "Predictions";
+
+    var classTypeDict = new Dictionary<int, string>
+{
+        { 1, "mammal" },
+        { 2, "bird" },
+        { 3, "reptile" },
+        { 4, "fish" },
+        { 5, "amphibian" },
+        { 6, "bug" },
+        { 7, "invertebrate" }
+    };
+}
+
+<style>
+    .table-responsive {
+        overflow-x: auto;
+    }
+    .full-width-table {
+        margin-left: -50px; 
+        margin-right: 0;
+
+    }
+    .table {
+        width: auto; 
+        margin-bottom: 0; 
+    }
+    .prediction-cell {
+        background-color: #e0f2f1;
+    }
+
+</style>
+
+<h2>Predictions</h2>
+<div class="full-width-table">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Animal Name</th>
+                <th>Hair</th>
+                <th>Feathers</th>
+                <th>Eggs</th>
+                <th>Milk</th>
+                <th>Airborne</th>
+                <th>Aquatic</th>
+                <th>Predator</th>
+                <th>Toothed</th>
+                <th>Backbone</th>
+                <th>Breathes</th>
+                <th>Venomous</th>
+                <th>Fins</th>
+                <th>Legs</th>
+                <th>Tail</th>
+                <th>Class Type</th>
+                <th class="prediction-cell">Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Animal.animal_name</td>
+                    <td>@item.Animal.Hair</td>
+                    <td>@item.Animal.Feathers</td>
+                    <td>@item.Animal.Eggs</td>
+                    <td>@item.Animal.Milk</td>
+                    <td>@item.Animal.Airborne</td>
+                    <td>@item.Animal.Aquatic</td>
+                    <td>@item.Animal.Predator</td>
+                    <td>@item.Animal.Toothed</td>
+                    <td>@item.Animal.Backbone</td>
+                    <td>@item.Animal.Breathes</td>
+                    <td>@item.Animal.Venomous</td>
+                    <td>@item.Animal.Fins</td>
+                    <td>@item.Animal.Legs</td>
+                    <td>@item.Animal.Tail</td>
+                    <td>@classTypeDict[@item.Animal.class_type]</td>
+                    <td class="prediction-cell">@item.Prediction</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <br />
+    <!-- use a simple if statement in razor code to show incorrect predictions -->
+    <h2>Incorrect Predictions</h2>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Animal Name</th>
+                <th>Hair</th>
+                <th>Feathers</th>
+                <th>Eggs</th>
+                <th>Milk</th>
+                <th>Airborne</th>
+                <th>Aquatic</th>
+                <th>Predator</th>
+                <th>Toothed</th>
+                <th>Backbone</th>
+                <th>Breathes</th>
+                <th>Venomous</th>
+                <th>Fins</th>
+                <th>Legs</th>
+                <th>Tail</th>
+                <th>Class Type</th>
+                <th class="prediction-cell">Prediction</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                if (classTypeDict[item.Animal.class_type] != item.Prediction)
+                {
+                    <tr>
+                        <td>@item.Animal.animal_name</td>
+                        <td>@item.Animal.Hair</td>
+                        <td>@item.Animal.Feathers</td>
+                        <td>@item.Animal.Eggs</td>
+                        <td>@item.Animal.Milk</td>
+                        <td>@item.Animal.Airborne</td>
+                        <td>@item.Animal.Aquatic</td>
+                        <td>@item.Animal.Predator</td>
+                        <td>@item.Animal.Toothed</td>
+                        <td>@item.Animal.Backbone</td>
+                        <td>@item.Animal.Breathes</td>
+                        <td>@item.Animal.Venomous</td>
+                        <td>@item.Animal.Fins</td>
+                        <td>@item.Animal.Legs</td>
+                        <td>@item.Animal.Tail</td>
+                        <td>@classTypeDict[@item.Animal.class_type]</td>
+                        <td class="prediction-cell">@item.Prediction</td>
+                    </tr>
+                }
+
+            }
+        </tbody>
+    </table>
+</div>
+
+

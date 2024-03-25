@@ -1,0 +1,96 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Index";
+    var imagePath = string.Empty;
+    if (ViewBag.Prediction != null)
+    {
+        // Construct the image path based on the prediction
+        imagePath = $"/img/{ViewBag.Prediction.ToLower()}_image.jpg";
+    }
+}
+
+
+<style>
+    .form-box {
+        max-width: 600px;
+        margin: 20px auto;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f9f9f9;
+    }
+
+    .form-group {
+        display: grid;
+        grid-template-columns: 1fr 3fr;
+        gap: 10px;
+        align-items: center;
+        margin-bottom: 10px;
+    }
+
+    .form-group label {
+        text-align: right;
+    }
+
+    .form-group input[type="number"] {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+
+    .form-group input[type="submit"] {
+        grid-column: 2 / 3;
+        width: auto;
+        padding: 10px 20px;
+        margin-top: 10px;
+        background-color: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .form-group input[type="submit"]:hover {
+        background-color: #0056b3;
+    }
+</style>
+
+<div class="text-center">
+    <h2>Decision Tree Animal Prediction</h2>
+
+    <div class="form-box">
+        <form action="/Home/Predict#predictionResult" method="post">
+            <div class="form-group"><label>Hair:</label><input type="number" name="hair" /></div>
+            <div class="form-group"><label>Feathers:</label><input type="number" name="feathers" /></div>
+            <div class="form-group"><label>Eggs:</label><input type="number" name="eggs" /></div>
+            <div class="form-group"><label>Milk:</label><input type="number" name="milk" /></div>
+            <div class="form-group"><label>Airborne:</label><input type="number" name="airborne" /></div>
+            <div class="form-group"><label>Aquatic:</label><input type="number" name="aquatic" /></div>
+            <div class="form-group"><label>Predator:</label><input type="number" name="predator" /></div>
+            <div class="form-group"><label>Toothed:</label><input type="number" name="toothed" /></div>
+            <div class="form-group"><label>Backbone:</label><input type="number" name="backbone" /></div>
+            <div class="form-group"><label>Breathes:</label><input type="number" name="breathes" /></div>
+            <div class="form-group"><label>Venomous:</label><input type="number" name="venomous" /></div>
+            <div class="form-group"><label>Fins:</label><input type="number" name="fins" /></div>
+            <div class="form-group"><label>Legs:</label><input type="number" name="legs" /></div>
+            <div class="form-group"><label>Tail:</label><input type="number" name="tail" /></div>
+            <div class="form-group"><label>Domestic:</label><input type="number" name="domestic" /></div>
+            <div class="form-group"><label>Catsize:</label><input type="number" name="catsize" /></div>
+            <div class="form-group"><input type="submit" value="Predict" /></div>
+        </form>
+    </div>
+    <div class="text-center" id="predictionResult">
+        @if (ViewBag.Prediction != null)
+        {
+            <h2>Prediction: @ViewBag.Prediction</h2>
+        }
+        @if (!string.IsNullOrEmpty(imagePath))
+        {
+            <div>
+                <img src="@imagePath" alt="Prediction Image" />
+            </div>
+        }
+    </div>
+
+</div>
