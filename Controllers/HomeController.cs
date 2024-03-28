@@ -131,7 +131,7 @@ namespace Zoo.Controllers
                     predictionResult = prediction != null && prediction.Length > 0 ? class_type_dict.GetValueOrDefault((int)prediction[0], "Unknown") : "Error in prediction";
                 }
 
-                predictions.Add(new AnimalPrediction { Animal = record, Prediction = predictionResult });
+                predictions.Add(new AnimalPrediction { Animal = record, Prediction = predictionResult }); // Adds the animal information and prediction for that animal to AnimalPrediction viewmodel
             }
 
             return View(predictions);
