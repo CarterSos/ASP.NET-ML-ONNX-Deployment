@@ -61,9 +61,9 @@ namespace Zoo.Controllers
                 var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
 
                 var inputs = new List<NamedOnnxValue>
-        {
-            NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
-        };
+                {
+                    NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                };
 
                 using (var results = _session.Run(inputs)) // makes the prediction with the inputs from the form (i.e. class_type 1-7)
                 {
@@ -111,18 +111,18 @@ namespace Zoo.Controllers
             foreach (var record in records)
             {
                 var input = new List<float>
-        {
-            record.Hair, record.Feathers, record.Eggs, record.Milk,
-            record.Airborne, record.Aquatic, record.Predator, record.Toothed,
-            record.Backbone, record.Breathes, record.Venomous, record.Fins,
-            record.Legs, record.Tail, record.Domestic, record.Catsize
-        };
+                {
+                    record.Hair, record.Feathers, record.Eggs, record.Milk,
+                    record.Airborne, record.Aquatic, record.Predator, record.Toothed,
+                    record.Backbone, record.Breathes, record.Venomous, record.Fins,
+                    record.Legs, record.Tail, record.Domestic, record.Catsize
+                };
                 var inputTensor = new DenseTensor<float>(input.ToArray(), new[] { 1, input.Count });
 
                 var inputs = new List<NamedOnnxValue>
-        {
-            NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
-        };
+                {
+                    NamedOnnxValue.CreateFromTensor("float_input", inputTensor)
+                };
 
                 string predictionResult;
                 using (var results = _session.Run(inputs))
