@@ -18,6 +18,12 @@ namespace Zoo.Controllers
         private readonly InferenceSession _session;
         private readonly ILogger<HomeController> _logger;
 
+        // !!! 
+        // In .NET Entity Framwork Core 8.0, load the model (with its path) in the Program.cs file
+        // Then in HomeController.cs you can bring it into InferenceSession _session; similar to this example, and run _session.Run(inputs)
+        // Just ask ChatGPT or read specific documentation on how to load ONNX model in .NET 8
+        // !!!
+
         public HomeController(ZooContext context, ILogger<HomeController> logger)
         {
             _context = context;
